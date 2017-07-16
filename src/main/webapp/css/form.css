@@ -1,0 +1,20 @@
+@CHARSET "UTF-8";
+
+.errors {
+	color: red;
+}
+
+.pagination > a.current {
+	color: red;
+}
+
+.login-error {
+	color: red;
+	font-weight: bold;	
+}
+
+.login-form > div {
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom; 10px;
+}

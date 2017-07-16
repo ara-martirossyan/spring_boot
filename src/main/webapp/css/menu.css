@@ -1,0 +1,134 @@
+#nav {
+    width: 100%;
+    position:static;
+    top:-32px;
+}
+
+#nav.affix {
+    position: fixed;
+    top: 0;
+    z-index:10;
+}
+
+.affix a {
+    padding: 10px;
+    -webkit-transition: padding 0.5s ease-in-out;
+    transition: padding 0.5s ease-in-out;
+}
+
+.affix-top a{
+    padding: 17px !important;
+    -webkit-transition: padding 0.5s ease-in-out;
+    transition: padding 0.5s ease-in-out;
+}
+
+.navbar-nav {
+    margin-top: 1px;
+    margin-right: 1px;
+    margin-left: 1px;
+    margin-bottom: 0px;
+}
+
+.navbar{
+    margin-bottom: 0px;
+}
+
+/* customize nav style */
+.navbar-custom {
+    background-color: #242424;
+    font-weight:700;
+    text-transform:uppercase;
+    border-width:0;
+}
+.navbar-custom  .navbar-nav>li>a {
+    color: white;
+}
+.navbar-custom .navbar-nav li.active a{
+    background-color: #4f0100;
+}
+
+.navbar-nav li.open>a:focus:hover, .navbar-custom  .navbar-nav li>a:hover, .navbar-custom  .navbar-nav li.active>a:hover {
+    background-color: darkred;
+    color: black;
+    font-weight: 700;
+}
+
+.navbar-custom .dropdown-menu{
+    right:0;
+}
+.navbar-custom .navbar-nav>.dropdown>a .caret {
+    border-top-color: #999;
+    border-bottom-color: #999;
+}
+
+.navbar-collapse.in { /*3.0.2 bug workaround*/
+    overflow-y: visible;
+}
+
+.navbar-toggle {
+    outline:0;
+}
+
+.navbar-brand {
+    padding: 0px;
+}
+
+.navbar-brand>img {
+    height: 100%;
+    padding-top: 5px;
+    padding-right: 25px;
+    padding-left: 35px;
+    padding-bottom: 5px;
+    width: auto;
+}
+
+.preload * {
+    -webkit-transition-property: none !important;
+    -moz-transition-property: none !important;
+    -o-transition-property: none !important;
+    transition-property: none !important;
+}
+
+
+@media (min-width:768px) {
+    .navbar-custom .dropdown-menu
+    {
+        position: absolute;
+        top 10px;
+        min-width: 160px;
+        padding: 0px;
+        background: #FFFFFF;
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        border-radius: 0px;
+        border: darkred solid 2px;
+    }
+
+    .navbar-custom .dropdown-menu:after
+    {
+        content: '';
+        position: absolute;
+        border-style: solid;
+        border-width: 0 12px 13px;
+        border-color: #FFFFFF transparent;
+        display: block;
+        width: 0;
+        z-index: 1;
+        top: -13px;
+        left: 124px;
+    }
+
+    .navbar-custom .dropdown-menu:before
+    {
+        content: '';
+        position: absolute;
+        border-style: solid;
+        border-width: 0 13px 14px;
+        border-color: #4f0100 transparent;
+        display: block;
+        width: 0;
+        z-index: 0;
+        top: -16px;
+        left: 124px;
+    }
+}

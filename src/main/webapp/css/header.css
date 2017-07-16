@@ -1,0 +1,47 @@
+header {
+    padding-bottom: 15px;
+}
+
+.blackgrad {
+    background:black;
+    background:linear-gradient(top, #000, #000, #414141);
+    background:-moz-linear-gradient(top, #000, #000, #333);
+    background:-webkit-linear-gradient(top, #000, #000, #333);
+    background:-o-linear-gradient(top, #000, #000, #333);
+    background:-ms-linear-gradient(top, #000, #000, #333);
+}
+
+#f1_container {
+    position: relative;
+    margin: 10px auto;
+    width: 100px;
+    height: 100px;
+    z-index: 1;
+}
+#f1_container {
+    perspective: 1000px;
+}
+#f1_card {
+    width: 100px;
+    height: 100px;
+    transform-style: preserve-3d;
+    -webkit-transition: all 1.0s linear;
+    -moz-transition: all 1.0s linear;
+    -o-transition: all 1.0s linear;
+    transition: all 1.0s linear;
+}
+#f1_container:hover #f1_card {
+    transform: rotateY(180deg);
+
+}
+.face {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    backface-visibility: hidden;
+}
+.face.back {
+    transform: rotateY(180deg);
+    color: black;
+    text-align: center;
+}
