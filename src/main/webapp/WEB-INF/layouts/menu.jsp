@@ -28,11 +28,14 @@
       		<li><a href="${contextRoot}/register">Register</a></li>
       	</sec:authorize>
         <sec:authorize access="isAuthenticated()">
-        	<li><a href="javascript:$('#logoutForm').submit();">Logout</a></li>
+        	<li><a href="${contextRoot}/profile">Profile</a></li>
         </sec:authorize>
         <sec:authorize access="hasRole('ROLE_ADMIN')"> 	
 	        <li><a href="${contextRoot}/add-status">Add Status</a></li>
 	        <li><a href="${contextRoot}/statuses">View Statuses</a></li>
+        </sec:authorize>
+        <sec:authorize access="isAuthenticated()">
+        	<li><a href="javascript:$('#logoutForm').submit();">Logout</a></li>
         </sec:authorize>
       </ul>
     </div><!--/.nav-collapse -->
