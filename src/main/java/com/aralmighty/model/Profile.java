@@ -47,4 +47,10 @@ public class Profile {
 	public void setAbout(String about) {
 		this.about = about;
 	}
+	
+	public void safeCopyFrom(Profile other) {
+		if (this.about == null) {
+			this.about = other.about;
+		}
+	}
 }
