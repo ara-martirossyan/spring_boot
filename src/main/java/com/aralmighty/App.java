@@ -1,5 +1,7 @@
 package com.aralmighty;
 
+import org.owasp.html.HtmlPolicyBuilder;
+import org.owasp.html.PolicyFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -59,5 +61,13 @@ public class App extends SpringBootServletInitializer{
 				container.addErrorPages(new ErrorPage(HttpStatus.BAD_REQUEST, "/400"));				
 			}
 		};
+	}
+	
+	@Bean
+	PolicyFactory getUserHtmlPolicy() {
+		return new HtmlPolicyBuilder()
+		.allowCommonBlockElements()
+		.allowCommonInlineFormattingElements()
+		.toFactory();
 	}
 }

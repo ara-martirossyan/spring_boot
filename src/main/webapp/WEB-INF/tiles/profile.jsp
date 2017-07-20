@@ -22,7 +22,7 @@
 						<h1>Click 'edit' to add information about yourself to your profile.</h1>
 					</c:when>
 					<c:otherwise>
-						<c:out value="${profile.about}"/>
+						${profile.about}
 					</c:otherwise>
 				</c:choose>
 			</div>

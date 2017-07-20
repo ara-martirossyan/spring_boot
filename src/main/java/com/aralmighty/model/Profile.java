@@ -8,6 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import org.owasp.html.PolicyFactory;
 
 @Entity
 @Table(name="profile")
@@ -22,6 +25,7 @@ public class Profile {
 	private SiteUser user;
 	
 	@Column(name="about", length=5000)
+	@Size(max=5000, message="{editprofile.about.size}")
 	private String about;
 
 	public Long getId() {
@@ -49,8 +53,14 @@ public class Profile {
 	}
 	
 	public void safeCopyFrom(Profile other) {
-		if (this.about == null) {
+		if (other.about != null) {
 			this.about = other.about;
+		}
+	}
+
+	public void safeMergeFrom(Profile webProfile, PolicyFactory htmlPolicy) {
+		if (webProfile != null) {
+			this.about = htmlPolicy.sanitize(webProfile.about);
 		}
 	}
 }
