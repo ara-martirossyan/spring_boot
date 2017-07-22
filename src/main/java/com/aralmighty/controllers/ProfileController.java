@@ -1,9 +1,15 @@
 package com.aralmighty.controllers;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import javax.validation.Valid;
 
 import org.owasp.html.PolicyFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -11,6 +17,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.aralmighty.model.Profile;
 import com.aralmighty.model.SiteUser;
@@ -21,13 +29,16 @@ import com.aralmighty.service.UserService;
 public class ProfileController {
 	
 	@Autowired
-	ProfileService profileService;
+	private ProfileService profileService;
 	
 	@Autowired
-	UserService userService;
+	private UserService userService;
 	
 	@Autowired
-	PolicyFactory htmlPolicy;
+	private PolicyFactory htmlPolicy;
+	
+	@Value("${photo.upload.directory}")
+	private String photoUploadDirectory;
 	
 	private SiteUser getUser() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -88,5 +99,20 @@ public class ProfileController {
 		}		
 		
 		return "app.editProfileAbout";
+	}
+
+	@RequestMapping(value="/upload-profile-photo", method=RequestMethod.POST)
+	String handlePhotoUploads(Model model, @RequestParam("file") MultipartFile file) {
+		
+		Path outputFilePath = Paths.get(photoUploadDirectory, file.getOriginalFilename());
+		
+		try {
+			Files.deleteIfExists(outputFilePath);
+			Files.copy(file.getInputStream(), outputFilePath);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:/profile";
 	}
 }

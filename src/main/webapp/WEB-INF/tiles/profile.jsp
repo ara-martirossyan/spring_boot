@@ -30,6 +30,14 @@
 			<div class="profile-about-edit pull-right">
 				<a href="${editProfileAbout}">edit</a>
 			</div>
+			
+			<p>&nbsp;</p>
+			<c:url value="/upload-profile-photo" var="uploadPhotoLink"/>
+			<form action="${uploadPhotoLink}" enctype="multipart/form-data" method="post">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+				Select Photo: <input type="file" accept="image/*" name="file" />
+				<input type="submit" value="upload"/>
+			</form>
 		</div>
 	</div>	
 </div>
